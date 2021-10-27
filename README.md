@@ -1,5 +1,5 @@
 # Key and Tempo estimation
-This is the repository for Applied Deep Leraning project (TUWien). The topic of this project is _Key and Tempo estimation_, type _?_.
+This is the repository for Applied Deep Leraning project (TUWien). The topic of this project is _Key and Tempo estimation_, type _Bring your own model_.
 
 ## Introduction
 
