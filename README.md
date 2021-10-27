@@ -16,7 +16,7 @@ The Key estimation has reached good accuracy, around 80%, with simplier technolo
 
 ### Methods
 The adopted procedure is based on [5], applied to several changes: a directional RCNN with LSTM system for the Tempo estimation and an applied CNN  to different frames of the spectrogram for the Key estimation.
-- *__Preprocessing__*: in this model the most common pre-process are used, hence the spectrogram transformation and the scattering [Guangxiao Song, Shenyi Ding, Zhijie Wang], respectively for a more meaningfull representation and for more clean data to analyze
+- *__Preprocessing__*: in this model the most common pre-process are used, hence the spectrogram transformation and the scattering [3], respectively for a more meaningfull representation and for more clean data to analyze
 - *__Model__*: in order to give a coeherent distance hop in the spectrogram for Key estimation, the RCNN for Tempo estimation can be useful. CNN can work faster if it considers frames that depend on the BPM the model and haven't big residuals of chords from the previous frame (i.g. 120 BPM for an audio of 12 seconds, there would be 24 beats in the entire audio frame, it could be useful to use a fraction/multiple of 24 frames for the entire spectrogram). It is not required audio longer than 12 s because those features can be detected in a really strict range, like a pair of quartine in Tempo estimation, and a chord progression in Key Estimation.
 
 ## Work-breakdown 
@@ -31,10 +31,17 @@ Total time: 60-61h
 
 ## Bibliography
 [1] Lerch, A. (2012). An introduction to audio content analysis: _Applications in signal processing and music informatics_. Wiley-IEEE Press.
+
 [2] Korzeniowski, F., Oramas, S., & Gouyon, F. (2021). _Artist Similarity with Graph Neural Networks_. arXiv preprint arXiv:2107.14541.
+
 [3] Song, G., Wang, Z., Han, F., Ding, S., & Gu, X. (2020). _Music auto-tagging using scattering transform and convolutional neural network with self-attention_. Applied Soft Computing, 96, 106702.
+
 [4] Dauphin, Y. N., Fan, A., Auli, M., & Grangier, D. (2017, July). _Language modeling with gated convolutional networks_. In International conference on machine learning (pp. 933-941). PMLR.
+
 [5] Schreiber, H., & Müller, M. (2019). _Musical tempo and key estimation using convolutional neural networks with directional filters_. arXiv preprint arXiv:1903.10839.
+
 [6] Korzeniowski, F. (2018). _Harmonic Analysis of Musical Audio using Deep Neural Networks_ (Doctoral dissertation, Ph. D. Dissertation. Johannes Kepler University Linz, Linz, Austria).
+
 [7] Mila Soares de Oliveira de Souza, Pedro Nuno de Souza Moura, Jean-Pierre Briot (). _Music Tempo Estimation via Neural Networks – A Comparative Analysis_. arXiv:2107.09208
+
 [8] Schreiber, H., & Müller, M. (2018, September). _A Single-Step Approach to Musical Tempo Estimation Using a Convolutional Neural Network_ In Ismir (pp. 98-105).
