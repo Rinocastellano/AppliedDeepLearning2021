@@ -47,6 +47,6 @@ Total time: 60-61h
 
 [6] Korzeniowski, F. (2018). _Harmonic Analysis of Musical Audio using Deep Neural Networks_ (Doctoral dissertation, Ph. D. Dissertation. Johannes Kepler University Linz, Linz, Austria).
 
-[7] Mila Soares de Oliveira de Souza, Pedro Nuno de Souza Moura, Jean-Pierre Briot (). _Music Tempo Estimation via Neural Networks – A Comparative Analysis_. arXiv:2107.09208
+[7] Mila Soares de Oliveira de Souza, Pedro Nuno de Souza Moura, Jean-Pierre Briot (2021). _Music Tempo Estimation via Neural Networks – A Comparative Analysis_. arXiv:2107.09208
 
 [8] Schreiber, H., & Müller, M. (2018, September). _A Single-Step Approach to Musical Tempo Estimation Using a Convolutional Neural Network_ In Ismir (pp. 98-105).
