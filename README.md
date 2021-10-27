@@ -10,7 +10,7 @@ The following image shows the spectrogram of a single-voice saxophone, it is imp
 ![Screenshot](spettrogramma.png) 
 This analysis cannot be generalized for any kind of song, that containes many instruments playing simultaneously and covers different frequencies in the spectrogram.
 The Tempo is defined by the BPM (Beats per Minute) and it is also crucial to a better knowledge and live execution of the song. If the audio is only composed by a continuos kick that covers all the execution, the identification of the BPM is easier than in more complex drum-tracks, just looking at the onsets of the wave-form audio and the distance in seconds between each other[1]. As stated in the previous section for the Key estimation, this analysis cannot be generalized for any kind of song. The following image describes the _novelty_ function of an audio, a particular signal representation that aims to represent the local maxima as the onset. 
-![Screenshot]("on_set detection.png")
+![Screenshot](on_set_detection.png)
 
 ## Approach
 
