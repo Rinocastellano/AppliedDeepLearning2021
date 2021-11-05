@@ -22,16 +22,16 @@ The Key estimation has reached good accuracy, around 80%, with simplier technolo
 ### Methods
 The adopted procedure is based on [5], applied to several changes: a directional RCNN with LSTM system for the Tempo estimation and an applied CNN  to different frames of the spectrogram for the Key estimation.
 - *__Preprocessing__*: in this model the most common pre-process are used, hence the spectrogram transformation and the scattering [3], respectively for a more meaningfull representation and for more clean data to analyze
-- *__Model__*: in order to give a coeherent distance hop in the spectrogram for Key estimation, the RCNN for Tempo estimation can be useful. CNN can work faster if it considers frames that depend on the BPM the model and haven't big residuals of chords from the previous frame (i.g. 120 BPM for an audio of 12 seconds, there would be 24 beats in the entire audio frame, it could be useful to use a fraction/multiple of 24 frames for the entire spectrogram). It is not required audio longer than 12 s because those features can be detected in a really strict range, like a pair of quartine in Tempo estimation, and a chord progression in Key Estimation.
+- *__Model__*: in order to give a coeherent distance hop in the spectrogram for Key estimation, the RCNN for Tempo estimation can be useful. CNN can work faster if it considers frames that depend on the BPM the model and haven't big residuals of chords from the previous frame (i.g. 120 BPM for an audio of 12 seconds, there would be 24 beats in the entire audio frame, it could be useful to use a fraction/multiple of 24 frames for the entire spectrogram). It is not required audio longer than 12 s because those features can be detected in a really strict range, like a pair of quartine in Tempo estimation or a chord progression in Key Estimation.
 
 ## Work-breakdown 
 - _data collection_: github repositories and given dataset ( Ballroom, Giantsteps etc.) 3-4h
 - _preprocessing_: 10h
 - _designing and building an appropriate network_: 10h
 - _training and fine-tuning that network_: 10h 
-- _building an application to present the results_: 10h
+- _building an application to present the results: 10h
 - _writing the final report_: 10h
-- _preparing the presentation of your work_: 7h
+- _preparing the presentation of the work_: 7h
 Total time: 60-61h
 
 ## Bibliography
