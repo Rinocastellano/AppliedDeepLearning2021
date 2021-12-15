@@ -21,17 +21,34 @@ The Key estimation has reached good accuracy, around 80%, with simplier technolo
 
 ### Methods
 The adopted procedure is based on [5], applied to several changes: a directional RCNN with LSTM system for the Tempo estimation and an applied CNN  to different frames of the spectrogram for the Key estimation.
-- *__Preprocessing__*: in this model the most common pre-process are used, hence the spectrogram transformation and the scattering [3], respectively for a more meaningfull representation and for more clean data to analyze
-- *__Model__*: in order to give a coeherent distance hop in the spectrogram for Key estimation, the RCNN for Tempo estimation can be useful. CNN can work faster if it considers frames that depend on the BPM the model and haven't big residuals of chords from the previous frame (i.g. 120 BPM for an audio of 12 seconds, there would be 24 beats in the entire audio frame, it could be useful to use a fraction/multiple of 24 frames for the entire spectrogram). It is not required audio longer than 12 s because those features can be detected in a really strict range, like a pair of quartine in Tempo estimation or a chord progression in Key Estimation.
+- *__Dataset__*: the dataset used in the two topic of analysis are: _Giantsteps-key_ and _GTZAN_ for key estimation, while _Giantsteps-Tempo_ and _ExtendedBallrom_ for tempo estimation. In order to do a better training process for the model as, it is useful to have as more data as possible, indeed a massive Data Augmentation process is done before the preprocessing. The first data augmentation applied to both the dataset is cutting the input data: sometimes the audio files are too long for the analysis, thus it is preferred to standardize the overall data in audio files of 15 sec. In this window of time it is possible to get all the essential information about key and tempo. The second data augmentation process is applied depending on which was the content of its annotation: for the key dataset it is used a pitch shifting of +2, +6 ,-2 and -6 semitones, while for the tempo dataset it is used a time stretching of 20% and -20%. For cropping, pith shifting and time stretching purpose the library _Librosa_ was used and the datasets increased from few thousands of audio, to more than 10 thousands. 
+- *__Preprocessing__*: in this model the most common pre-process are used, hence the spectrogram transformation and the scattering [3], respectively for a more meaningfull representation and for more clean data to analyze. For a more effective result in its application it is decided to compute the log-melspectrogram with a _window_lenght=1024_ and _hop_size=612_. This preprocessing process creates a dataset of image with more enlighted informations(put image), for instance it can be seen really easily that some frequencies are executed by the songs along the y axis, regarding the key estimation problem, and some timesteps along the x axis more enlighted than other, regarding the tempo estimation. 
+- *__Model__*: in order to give a coeherent distance hop in the spectrogram for Key estimation, the RCNN for Tempo estimation can be useful. CNN can work faster if it considers frames that depend on the BPM the model and haven't big residuals of chords from the previous frame (i.g. 120 BPM for an audio of 12 seconds, there would be 24 beats in the entire audio frame, it could be useful to use a fraction/multiple of 24 frames for the entire spectrogram). It is not required audio longer than 12 s because those features can be detected in a really strict range, like a pair of quartine in Tempo estimation or a chord progression in Key Estimation. 
 
+
+## hacking
+### Implementation
+The implementation is done by following the schema:
+
+there is another possible schema that escape the preprocessing, for its real high time demanding, that is the following one. It will be more schematized in the following updates, with the creation of class and more stand-alone function.
+### Changes with respect to the original description of the model:
+The first idea of the project was the application of a common model that computes both the key and tempo using the same schema. In order to retrieve this information it was necessary to have a dataset that containes both for each single audio, but it wasn't found. Another possibility is to try estimate the hidden annotation, like the key for the tempo dataset, and it was tried using the _librosa_ library, with really low results. At the end it is preferred to build two different models that estimate separately the key and tempo.
+### Model architecture 
+- The model decided for key estimation is a CNN combined with Fully Connected Layers at the end. In order to get more regularization as possible, given that the there is a lot of overfitting (Image x), it is added many BatchNormalization layers and kernel regularizers of type l2. The possible outputs of the model are the only main keys used in the actual pop-music, all the major and minor keys. The accuracy meter used is based on the possibility of error by the model that can be accepted more than other: for instance if a song is in C major and the output is G major it can be accepted more than another error like Ab minor. It is created a scale of weight of the error in order to have a more acceptable accuracy by the test dataset:
+Relative fifth: error of 50% (Ex. Label: C major , Prediction: G major)
+Relative minor/major: error of 75% (Ex. Label: C major, Prediction: A minor)
+Parallel minor/major: error of 90% (Ex. Label: C major, Prediciotn: C minor)
+Using this kind of accuracy, it increased to 30%-35% for both the database _Giantsteps_ and _GTZAN_. 
+- The model computed for tempo estimation is a RCNN combined with a Fully Connected Layers at the end. The same analysis for regularization is done and moreover, during the training, is added an early stopping callback in order to avoid the borning of an overfitting behaviour. The metrics used for the accuracy are following some rules that accept some tolerance, given that for the human ear is really difficult to distinguish the difference from a bpm (beats per minute) _x_ and _x+1_: 
+if the Tempo is doubled or halfed, error of 50% (Ex. Label: 80 BPM, Prediction: 160 BPM).
+In this way the accuracy increased to the 30% in the ExtendedBallroom and 50% in the Giantsteps dataset.
+The expectation were bigger for the tempo estimation, it is expected an higher accuracy using in addiction this facilitating rules. During the 3rd milestone it will be tried to improve the performance of both the models, working with the number of layers and the regularization parameters.
 ## Work-breakdown 
-- _data collection_: github repositories and given dataset ( Ballroom, Giantsteps etc.) 3-4h
-- _preprocessing_: 10h
-- _designing and building an appropriate network_: 10h
+- _data collection_: ExtendedBallroom and Giantsteps-tempo for Tempo estimation. GTZAN and Giantsteps-Key for Key estimation. 5h
+- _data augmentation_: cropping, shifting pitch and time stretching. 30h
+- _preprocessing_: 12h
+- _designing an1d building an appropriate network_: 5h
 - _training and fine-tuning that network_: 10h 
-- _building an application to present the results: 10h
-- _writing the final report_: 10h
-- _preparing the presentation of the work_: 7h
 Total time: 60-61h
 
 ## Bibliography
