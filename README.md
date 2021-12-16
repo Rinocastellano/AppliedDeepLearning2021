@@ -5,7 +5,7 @@ This is the repository for Applied Deep Leraning project (TUWien). The topic of 
 
 Key and Tempo are middle-level feature good to the development and the dynamics for any kind of song, classical and rock. 
 
-The Key is the main chord of the composition where the entire chord progression and note execution lives around. If the chords played during the song are known, defining the key can be a straightforward challenge: usually the chords are composed by the simultaneous push of three notes on the piano, or many in the guitar. If the song is only composed by an execution of chords by a piano, just analyzing its log-spectrogram (better visualization than classic spectrogram) can facilitate the definition.
+The Key is the main chord of the composition where the entire chord progression and note execution lives around. If the chords played during the song are known, defining the key can be a straightforward challenge: the chords are a composition of frequencies and pitch that seems are played simultaneously, like the basic triad played on the piano or the arpeggio in the guitar. If the song is only composed by an execution of chords by a piano, just analyzing its log-spectrogram (better visualization than classic spectrogram) can facilitate the definition.
 The following image shows the spectrogram of a single-voice saxophone, it is important to notice the clear frequencies activated, the notes, during its execution.[1]
 ![Screenshot](spettrogramma.png) 
 This analysis cannot be generalized for any kind of song, that containes many instruments playing simultaneously and covers different frequencies in the spectrogram.
