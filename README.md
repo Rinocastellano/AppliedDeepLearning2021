@@ -32,7 +32,12 @@ The adopted procedure is based on [5], applied to several changes: a directional
 The implementation is basic because implement just in 4 notebooks and, as it will be discussed in the next paragraph, there are two separate way for the key estimation and tempo estimation model:
 - "Tempo dataset preprocessing" and "Key dataset Preprocessing" that will do Data Augmentation and Pre-Processing with the database given
 -  "Model for tempo estimation" and "Model for key estimation" that will create the model for the task, with its accuracy metric evaluation.
-there is another possible schema that escape the preprocessing, for its real high time demanding, and is explained in both the notebooks "Model for tempo estimation" and "Model for key estimation". It will be more schematized in the following updates, with the creation of class and more stand-alone function.
+The default sequence of execution is:
+- "Tempo data preprocessing" and "Key data preprocessing" notebooks, or viceversa.
+- "Model for tempo estimation" and "Model for key estimation" notebooks, or viceversa.
+there is another possible schema that escape the preprocessing, for its real high time demanding, and is explained in both the notebooks "Model for tempo estimation" and "Model for key estimation". For this faster schema, it is not needed to run the "preprocessing" notebooks, but just the "model estimation" notebooks.
+It will be more schematized in the following updates, with the creation of class and more stand-alone function.
+
 ### Changes with respect to the original description of the model:
 The first idea of the project was the application of a common model that computes both the key and tempo using the same schema. In order to retrieve this information it was necessary to have a dataset that containes both for each single audio, but it wasn't found. Another possibility is to try estimate the hidden annotation, like the key for the tempo dataset, and it was tried using the _librosa_ library, with really low results. At the end it is preferred to build two different models that estimate separately the key and tempo.
 ### Model architecture 
