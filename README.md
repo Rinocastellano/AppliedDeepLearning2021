@@ -58,6 +58,20 @@ The metrics used for the accuracy are following some rules that accept some tole
 if the Tempo is doubled or halfed, error of 50% (Ex. Label: 80 BPM, Prediction: 160 BPM).
 In this way the accuracy increased to the 30% in the ExtendedBallroom and 50% in the Giantsteps dataset.
 The expectation were bigger for the tempo estimation, it is expected an higher accuracy using in addiction this facilitating rules. During the 3rd milestone it will be tried to improve the performance of both the models, working with the number of layers and the regularization parameters.
+## Web-App
+The web-app application is a basic Flask-HTML developed service that allows the user to put a song inside the app and decide what prediction to do, if only Tempo, Key estimation or both. The main limitation of this naïve web-app is that the user can only upload a song the browse in its device, initially it was thought that you can get the prediction from online services like YouTube or Spotify, but there were required either semi-illegal download of song or a too complex application for a snippet download.
+The application is divided in:
+-	Back-end files: everything is managed by the web_app.py file, that implements a Flask server living in a localhost IP
+-	Front-end .html files that are the home.html and result.html, from which you can see the prediction result and go back to the home.
+
+## Insights
+During the development of this project there were encountered many chal lenges, mostly regarding the building of the most appropriate model, that has an high accuracy compared to the other public research found during the first assignment. It was encountered the low effort given by the kernel regularizers, inside the hidden layers, to the validation accuracy during the fit part, while the high effort given by the BatchNormalization layer, mostly with the Tempo Esti mation goal. Another take away is the finding of a good optimization parameter in AdaGrad: after many trials with SGD and AdaDelta, with low result in the first and not good enough with the second one, the best result is reached using the AdaGrad. An obstacle that I think is not possible to overcome is the data augmentation time consuming: it took some hours to do the pitch shifting, time
+120 stretching and cutting in order to get as many as possible data for the train, test and validation dataset. The expectations were higher, mostly regarding the
+accuracy of Key Estimation model, maybe because the LSTM approach on 15s audio doesn’t give the expected effort, and if it is possible to restart the entire
+project, I should change the entire architecture for the Key Estimation topic, 125 using longer data, in a time point of view, and more sophisticated architecture.
+The changes I would do for the Tempo Estimation topic are the addition of more
+data augmentation, like the addition of noise, and filtering in data preprocessing,
+more focused in high-frequencies and transition enlightening.
 ## Work-breakdown 
 - _data collection_: ExtendedBallroom and Giantsteps-tempo for Tempo estimation. GTZAN and Giantsteps-Key for Key estimation. 5h
 - _data augmentation_: cropping, shifting pitch and time stretching. 30h
