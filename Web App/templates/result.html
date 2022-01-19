@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+<body>
+	<div class="container">
+		<div class="box1">
+			<h1>RESULT</h1>
+			<p> Your song {{file}} has the following info</p>
+
+			<h1> BPM:<br> {{prediction_bpm}}</h1>
+			<h1> KEY:<br> {{prediction_key}}</h1>
+			<p>If you want to go back to home please click</p>
+			<form method="post" enctype="multipart/form-data">
+				<input type="submit" name="back home" class="buttonresult">
+			</form>
+
+			<img src={{image}} class="img-result">
+		</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <script language="javascript">
+            var x = 0;
+
+            function hola(x) {
+                if(x == 0) {
+                    document.getElementById("cont1").style.visibility="hidden";
+                    document.getElementById("cont2").style.visibility="hidden";
+                }
+
+                if(x == 1) {
+                    document.getElementById("cont1").style.visibility="visible";
+                    document.getElementById("cont2").style.visibility="hidden"; 
+                }
+
+                if(x == 2)  {
+                    document.getElementById("cont1").style.visibility="hidden";
+                    document.getElementById("cont2").style.visibility="visible"; 
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <input type="button" onclick="hola(1)" value="hidefield1" id="boton1">
+        <div id="cont1">
+            <input type="text">
+        </div>
+
+        <input type="button" onclick="hola(2)" value="hidefield2" id="boton2">
+
+        <div id="cont2">
+            <input type="text">
+        </div>
+    </body>
+<html>
